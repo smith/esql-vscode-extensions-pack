@@ -67,7 +67,7 @@
     "vscode-tmgrammar-test": "^0.0.11"
   },
   "scripts": {
-    "test": "vscode-tmgrammar-snap --grammar syntaxes/esql.tmLanguage.json --scope source.esql --testcases \"test/snapshots/**/*.{csl,kusto,kql}\"",
+    "test": "vscode-tmgrammar-snap --grammar syntaxes/esql.tmLanguage.json --scope source.esql --testcases \"test/snapshots/**/*.esql\"",
     "test:update-snapshots": "vscode-tmgrammar-snap --updateSnapshot --grammar syntaxes/esql.tmLanguage.json --scope source.esql --testcases \"test/snapshots/**/*.{csl,kusto,kql}\""
   }
 }
