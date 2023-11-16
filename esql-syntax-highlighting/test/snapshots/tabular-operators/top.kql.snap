@@ -1,0 +1,98 @@
+>// https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/topoperator
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.esql comment.line.kusto
+>
+>T | top 5 by Name desc nulls last
+#^^^^ source.esql
+#    ^^^ source.esql meta.query.top.kusto keyword.other.query.kusto
+#       ^ source.esql meta.query.top.kusto
+#        ^ source.esql meta.query.top.kusto constant.numeric.kusto
+#         ^ source.esql meta.query.top.kusto
+#          ^^ source.esql meta.query.top.kusto keyword.other.operator.kusto
+#            ^ source.esql meta.query.top.kusto
+#             ^^^^ source.esql meta.query.top.kusto variable.other.column.kusto
+#                 ^ source.esql
+#                  ^^^^ source.esql keyword.other.kusto
+#                      ^ source.esql
+#                       ^^^^^^^^^^ source.esql keyword.other.kusto
+>
+>// https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/topnestedoperator
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.esql comment.line.kusto
+>
+>StormEvents
+#^^^^^^^^^^^^ source.esql
+>| top-nested 2 of State with others = "All Other States" by sum(BeginLat),
+#^^ source.esql
+#  ^^^^^^^^^^ source.esql keyword.other.query.kusto
+#            ^ source.esql
+#             ^ source.esql constant.numeric.kusto
+#              ^ source.esql
+#               ^^ source.esql keyword.other.operator.kusto
+#                 ^^^^^^^ source.esql
+#                        ^^^^ source.esql keyword.other.operator.kusto
+#                            ^^^^^^^^^^ source.esql
+#                                      ^ source.esql string.quoted.double.kusto punctuation.definition.string.kusto
+#                                       ^^^^^^^^^^^^^^^^ source.esql string.quoted.double.kusto
+#                                                       ^ source.esql string.quoted.double.kusto punctuation.definition.string.kusto
+#                                                        ^ source.esql
+#                                                         ^^ source.esql keyword.other.operator.kusto
+#                                                           ^ source.esql
+#                                                            ^^^ source.esql support.function.kusto
+#                                                               ^^^^^^^^^^^^ source.esql
+>  top-nested 3 of Source by sum(BeginLat),
+#^^ source.esql
+#  ^^^^^^^^^^ source.esql keyword.other.query.kusto
+#            ^ source.esql
+#             ^ source.esql constant.numeric.kusto
+#              ^ source.esql
+#               ^^ source.esql keyword.other.operator.kusto
+#                 ^^^^^^^^ source.esql
+#                         ^^ source.esql keyword.other.operator.kusto
+#                           ^ source.esql
+#                            ^^^ source.esql support.function.kusto
+#                               ^^^^^^^^^^^^ source.esql
+>  top-nested 1 of EndLocation with others = "All Other End Locations" by sum(BeginLat)
+#^^ source.esql
+#  ^^^^^^^^^^ source.esql keyword.other.query.kusto
+#            ^ source.esql
+#             ^ source.esql constant.numeric.kusto
+#              ^ source.esql
+#               ^^ source.esql keyword.other.operator.kusto
+#                 ^^^^^^^^^^^^^ source.esql
+#                              ^^^^ source.esql keyword.other.operator.kusto
+#                                  ^^^^^^^^^^ source.esql
+#                                            ^ source.esql string.quoted.double.kusto punctuation.definition.string.kusto
+#                                             ^^^^^^^^^^^^^^^^^^^^^^^ source.esql string.quoted.double.kusto
+#                                                                    ^ source.esql string.quoted.double.kusto punctuation.definition.string.kusto
+#                                                                     ^ source.esql
+#                                                                      ^^ source.esql keyword.other.operator.kusto
+#                                                                        ^ source.esql
+#                                                                         ^^^ source.esql support.function.kusto
+#                                                                            ^^^^^^^^^^^ source.esql
+>
+>// https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/tophittersoperator
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.esql comment.line.kusto
+>
+>Events | top-hitters 5 of EventId
+#^^^^^^^^^ source.esql
+#         ^^^^^^^^^^^ source.esql meta.query.top-hitters.kusto keyword.other.query.kusto
+#                    ^ source.esql meta.query.top-hitters.kusto
+#                     ^ source.esql meta.query.top-hitters.kusto constant.numeric.kusto
+#                      ^ source.esql meta.query.top-hitters.kusto
+#                       ^^ source.esql meta.query.top-hitters.kusto keyword.other.operator.kusto
+#                         ^ source.esql meta.query.top-hitters.kusto
+#                          ^^^^^^^ source.esql meta.query.top-hitters.kusto variable.other.column.kusto
+>
+>PageViews | top-hitters 25 of Page by NumViews
+#^^^^^^^^^^^^ source.esql
+#            ^^^^^^^^^^^ source.esql meta.query.top-hitters.kusto keyword.other.query.kusto
+#                       ^ source.esql meta.query.top-hitters.kusto
+#                        ^^ source.esql meta.query.top-hitters.kusto constant.numeric.kusto
+#                          ^ source.esql meta.query.top-hitters.kusto
+#                           ^^ source.esql meta.query.top-hitters.kusto keyword.other.operator.kusto
+#                             ^ source.esql meta.query.top-hitters.kusto
+#                              ^^^^ source.esql meta.query.top-hitters.kusto variable.other.column.kusto
+#                                  ^ source.esql meta.query.top-hitters.kusto
+#                                   ^^ source.esql meta.query.top-hitters.kusto keyword.other.operator.kusto
+#                                     ^ source.esql meta.query.top-hitters.kusto
+#                                      ^^^^^^^^ source.esql meta.query.top-hitters.kusto variable.other.column.kusto
+>

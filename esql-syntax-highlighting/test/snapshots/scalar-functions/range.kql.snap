@@ -1,0 +1,68 @@
+>// https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/rangefunction
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.esql comment.line.kusto
+>
+>T | extend r = range(1, 8, 3);
+#^^^^ source.esql
+#    ^^^^^^ source.esql keyword.other.query.kusto
+#          ^^^^^ source.esql
+#               ^^^^^ source.esql meta.scalar.function.range.kusto support.function.kusto
+#                    ^ source.esql meta.scalar.function.range.kusto
+#                     ^ source.esql meta.scalar.function.range.kusto constant.numeric.kusto
+#                      ^^ source.esql meta.scalar.function.range.kusto
+#                        ^ source.esql meta.scalar.function.range.kusto constant.numeric.kusto
+#                         ^^ source.esql meta.scalar.function.range.kusto
+#                           ^ source.esql meta.scalar.function.range.kusto constant.numeric.kusto
+#                            ^ source.esql meta.scalar.function.range.kusto
+#                             ^^ source.esql
+>
+>T | extend r = range(datetime(2015-01-01), datetime(2015-12-31), 1d);
+#^^^^ source.esql
+#    ^^^^^^ source.esql keyword.other.query.kusto
+#          ^^^^^ source.esql
+#               ^^^^^ source.esql meta.scalar.function.range.kusto support.function.kusto
+#                    ^ source.esql meta.scalar.function.range.kusto
+#                     ^^^^^^^^ source.esql meta.scalar.function.range.kusto storage.type.kusto
+#                             ^ source.esql meta.scalar.function.range.kusto
+#                              ^^^^ source.esql meta.scalar.function.range.kusto constant.numeric.kusto
+#                                  ^ source.esql meta.scalar.function.range.kusto
+#                                   ^^ source.esql meta.scalar.function.range.kusto constant.numeric.kusto
+#                                     ^ source.esql meta.scalar.function.range.kusto
+#                                      ^^ source.esql meta.scalar.function.range.kusto constant.numeric.kusto
+#                                        ^ source.esql meta.scalar.function.range.kusto
+#                                         ^^ source.esql meta.scalar.function.range.kusto
+#                                           ^^^^^^^^ source.esql meta.scalar.function.range.kusto storage.type.kusto
+#                                                   ^ source.esql meta.scalar.function.range.kusto
+#                                                    ^^^^ source.esql meta.scalar.function.range.kusto constant.numeric.kusto
+#                                                        ^ source.esql meta.scalar.function.range.kusto
+#                                                         ^^ source.esql meta.scalar.function.range.kusto constant.numeric.kusto
+#                                                           ^ source.esql meta.scalar.function.range.kusto
+#                                                            ^^ source.esql meta.scalar.function.range.kusto constant.numeric.kusto
+#                                                              ^ source.esql meta.scalar.function.range.kusto
+#                                                               ^^ source.esql meta.scalar.function.range.kusto
+#                                                                 ^^ source.esql meta.scalar.function.range.kusto constant.numeric.kusto
+#                                                                   ^ source.esql meta.scalar.function.range.kusto
+#                                                                    ^^ source.esql
+>
+>range(1, 3);
+#^^^^^ source.esql meta.scalar.function.range.kusto support.function.kusto
+#     ^ source.esql meta.scalar.function.range.kusto
+#      ^ source.esql meta.scalar.function.range.kusto constant.numeric.kusto
+#       ^^ source.esql meta.scalar.function.range.kusto
+#         ^ source.esql meta.scalar.function.range.kusto constant.numeric.kusto
+#          ^ source.esql meta.scalar.function.range.kusto
+#           ^^ source.esql
+>
+>print r = range(1,1000000000) | mv-expand r | count
+#^^^^^ source.esql keyword.other.query.kusto
+#     ^^^^^ source.esql
+#          ^^^^^ source.esql meta.scalar.function.range.kusto support.function.kusto
+#               ^ source.esql meta.scalar.function.range.kusto
+#                ^ source.esql meta.scalar.function.range.kusto constant.numeric.kusto
+#                 ^ source.esql meta.scalar.function.range.kusto
+#                  ^^^^^^^^^^ source.esql meta.scalar.function.range.kusto constant.numeric.kusto
+#                            ^ source.esql meta.scalar.function.range.kusto
+#                             ^^^ source.esql
+#                                ^^^^^^^^^ source.esql keyword.other.query.kusto
+#                                         ^^^^^ source.esql
+#                                              ^^^^^ source.esql keyword.other.query.kusto
+>

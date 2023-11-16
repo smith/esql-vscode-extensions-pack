@@ -1,0 +1,157 @@
+>// https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/scalar-data-types/string
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.esql comment.line.kusto
+>
+>print strlen("Hello"', '@"world!"); // Nothing between them
+#^^^^^ source.esql keyword.other.query.kusto
+#     ^ source.esql
+#      ^^^^^^ source.esql support.function.kusto
+#            ^ source.esql
+#             ^ source.esql string.quoted.double.kusto punctuation.definition.string.kusto
+#              ^^^^^ source.esql string.quoted.double.kusto
+#                   ^ source.esql string.quoted.double.kusto punctuation.definition.string.kusto
+#                    ^ source.esql string.quoted.single.kusto punctuation.definition.string.kusto
+#                     ^^ source.esql string.quoted.single.kusto
+#                       ^ source.esql string.quoted.single.kusto punctuation.definition.string.kusto
+#                        ^^ source.esql string.quoted.double.kusto punctuation.definition.string.kusto
+#                          ^^^^^^ source.esql string.quoted.double.kusto
+#                                ^ source.esql string.quoted.double.kusto punctuation.definition.string.kusto
+#                                 ^^^ source.esql
+#                                    ^^^^^^^^^^^^^^^^^^^^^^^ source.esql comment.line.kusto
+>
+>print strlen("Hello" ', ' @"world!"); // Separated by whitespace only
+#^^^^^ source.esql keyword.other.query.kusto
+#     ^ source.esql
+#      ^^^^^^ source.esql support.function.kusto
+#            ^ source.esql
+#             ^ source.esql string.quoted.double.kusto punctuation.definition.string.kusto
+#              ^^^^^ source.esql string.quoted.double.kusto
+#                   ^ source.esql string.quoted.double.kusto punctuation.definition.string.kusto
+#                    ^ source.esql
+#                     ^ source.esql string.quoted.single.kusto punctuation.definition.string.kusto
+#                      ^^ source.esql string.quoted.single.kusto
+#                        ^ source.esql string.quoted.single.kusto punctuation.definition.string.kusto
+#                         ^ source.esql
+#                          ^^ source.esql string.quoted.double.kusto punctuation.definition.string.kusto
+#                            ^^^^^^ source.esql string.quoted.double.kusto
+#                                  ^ source.esql string.quoted.double.kusto punctuation.definition.string.kusto
+#                                   ^^^ source.esql
+#                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.esql comment.line.kusto
+>
+>print strlen("Hello"
+#^^^^^ source.esql keyword.other.query.kusto
+#     ^ source.esql
+#      ^^^^^^ source.esql support.function.kusto
+#            ^ source.esql
+#             ^ source.esql string.quoted.double.kusto punctuation.definition.string.kusto
+#              ^^^^^ source.esql string.quoted.double.kusto
+#                   ^ source.esql string.quoted.double.kusto punctuation.definition.string.kusto
+>  // Comment
+#^^ source.esql
+#  ^^^^^^^^^^ source.esql comment.line.kusto
+>  ', '@"world!"); // Separated by whitespace and a comment
+#^^ source.esql
+#  ^ source.esql string.quoted.single.kusto punctuation.definition.string.kusto
+#   ^^ source.esql string.quoted.single.kusto
+#     ^ source.esql string.quoted.single.kusto punctuation.definition.string.kusto
+#      ^^ source.esql string.quoted.double.kusto punctuation.definition.string.kusto
+#        ^^^^^^ source.esql string.quoted.double.kusto
+#              ^ source.esql string.quoted.double.kusto punctuation.definition.string.kusto
+#               ^^^ source.esql
+#                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.esql comment.line.kusto
+>
+>// Simple string notation
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.esql comment.line.kusto
+>print s1 = 'some string', s2 = "some other string"
+#^^^^^ source.esql keyword.other.query.kusto
+#     ^^^^^^ source.esql
+#           ^ source.esql string.quoted.single.kusto punctuation.definition.string.kusto
+#            ^^^^^^^^^^^ source.esql string.quoted.single.kusto
+#                       ^ source.esql string.quoted.single.kusto punctuation.definition.string.kusto
+#                        ^^^^^^^ source.esql
+#                               ^ source.esql string.quoted.double.kusto punctuation.definition.string.kusto
+#                                ^^^^^^^^^^^^^^^^^ source.esql string.quoted.double.kusto
+#                                                 ^ source.esql string.quoted.double.kusto punctuation.definition.string.kusto
+>
+>// Strings that include single or double-quotes can be defined as follows
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.esql comment.line.kusto
+>print s1 = 'string with " (double quotes)',
+#^^^^^ source.esql keyword.other.query.kusto
+#     ^^^^^^ source.esql
+#           ^ source.esql string.quoted.single.kusto punctuation.definition.string.kusto
+#            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.esql string.quoted.single.kusto
+#                                         ^ source.esql string.quoted.single.kusto punctuation.definition.string.kusto
+#                                          ^^ source.esql
+>          s2 = "string with ' (single quotes)"
+#^^^^^^^^^^^^^^^ source.esql
+#               ^ source.esql string.quoted.double.kusto punctuation.definition.string.kusto
+#                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.esql string.quoted.double.kusto
+#                                             ^ source.esql string.quoted.double.kusto punctuation.definition.string.kusto
+>
+>// Strings with '\' can be prefixed with '@' (as in c#)
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.esql comment.line.kusto
+>print myPath1 = @'C:\Folder\filename.txt'
+#^^^^^ source.esql keyword.other.query.kusto
+#     ^^^^^^^^^^^ source.esql
+#                ^^ source.esql string.quoted.single.kusto punctuation.definition.string.kusto
+#                  ^^^^^^^^^^^^^^^^^^^^^^ source.esql string.quoted.single.kusto
+#                                        ^ source.esql string.quoted.single.kusto punctuation.definition.string.kusto
+>
+>// Escaping using '\' notation
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.esql comment.line.kusto
+>print s = '\\n.*(>|\'|=|\")[a-zA-Z0-9/+]{86}=='
+#^^^^^ source.esql keyword.other.query.kusto
+#     ^^^^^ source.esql
+#          ^ source.esql string.quoted.single.kusto punctuation.definition.string.kusto
+#           ^^^^^^^^ source.esql string.quoted.single.kusto
+#                   ^^ source.esql string.quoted.single.kusto constant.character.escape.kusto
+#                     ^^^ source.esql string.quoted.single.kusto
+#                        ^^ source.esql string.quoted.single.kusto constant.character.escape.kusto
+#                          ^^^^^^^^^^^^^^^^^^^^ source.esql string.quoted.single.kusto
+#                                              ^ source.esql string.quoted.single.kusto punctuation.definition.string.kusto
+>
+>// Encode a C# program in a Kusto multi-line string
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.esql comment.line.kusto
+>print program=```
+#^^^^^ source.esql keyword.other.query.kusto
+#     ^^^^^^^^^^^^^ source.esql
+>  public class Program {
+#^^^^^^^^^^^^^^^^^^^^^^^^^ source.esql
+>    public static void Main() {
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.esql
+>      System.Console.WriteLine("Hello!");
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.esql
+#                               ^ source.esql string.quoted.double.kusto punctuation.definition.string.kusto
+#                                ^^^^^^ source.esql string.quoted.double.kusto
+#                                      ^ source.esql string.quoted.double.kusto punctuation.definition.string.kusto
+#                                       ^^^ source.esql
+>    }
+#^^^^^^ source.esql
+>  }```
+#^^^^^^^ source.esql
+>
+>h'hello'
+#^^ source.esql string.quoted.single.kusto punctuation.definition.string.kusto
+#  ^^^^^ source.esql string.quoted.single.kusto
+#       ^ source.esql string.quoted.single.kusto punctuation.definition.string.kusto
+>h@'world'
+#^ source.esql
+# ^^ source.esql string.quoted.single.kusto punctuation.definition.string.kusto
+#   ^^^^^ source.esql string.quoted.single.kusto
+#        ^ source.esql string.quoted.single.kusto punctuation.definition.string.kusto
+>h"hello"
+#^^ source.esql string.quoted.double.kusto punctuation.definition.string.kusto
+#  ^^^^^ source.esql string.quoted.double.kusto
+#       ^ source.esql string.quoted.double.kusto punctuation.definition.string.kusto
+>
+>print x="https://contoso.blob.core.windows.net/container/blob.txt?"
+#^^^^^ source.esql keyword.other.query.kusto
+#     ^^^ source.esql
+#        ^ source.esql string.quoted.double.kusto punctuation.definition.string.kusto
+#         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.esql string.quoted.double.kusto
+#                                                                  ^ source.esql string.quoted.double.kusto punctuation.definition.string.kusto
+>  h'sv=2012-02-12&se=2013-04-13T0...'
+#^^ source.esql
+#  ^^ source.esql string.quoted.single.kusto punctuation.definition.string.kusto
+#    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.esql string.quoted.single.kusto
+#                                    ^ source.esql string.quoted.single.kusto punctuation.definition.string.kusto
+>

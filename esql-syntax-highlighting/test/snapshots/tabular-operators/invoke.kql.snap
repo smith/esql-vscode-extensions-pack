@@ -1,0 +1,77 @@
+>// https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/invokeoperator
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.esql comment.line.kusto
+>
+>// clipped_average(): calculates percentiles limits, and then makes another 
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.esql comment.line.kusto
+>//                    pass over the data to calculate average with values inside the percentiles
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.esql comment.line.kusto
+>let clipped_average = (T:(x: long), lowPercentile:double, upPercentile:double)
+#^^^ source.esql keyword.control.kusto
+#   ^^^^^^^^^^^^^^^^^^^^^^^^^^ source.esql
+#                             ^^^^ source.esql storage.type.kusto
+#                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.esql
+>{
+#^^ source.esql
+>   let high = toscalar(T | summarize percentiles(x, upPercentile));
+#^^^ source.esql
+#   ^^^ source.esql keyword.control.kusto
+#      ^^^^^^^^ source.esql
+#              ^^^^^^^^ source.esql support.function.kusto
+#                      ^^^^^ source.esql
+#                           ^^^^^^^^^ source.esql keyword.other.query.kusto
+#                                    ^ source.esql
+#                                     ^^^^^^^^^^^ source.esql support.function.kusto
+#                                                ^^^^^^^^^^^^^^^^^^^^ source.esql
+>   let low = toscalar(T | summarize percentiles(x, lowPercentile));
+#^^^ source.esql
+#   ^^^ source.esql keyword.control.kusto
+#      ^^^^^^^ source.esql
+#             ^^^^^^^^ source.esql support.function.kusto
+#                     ^^^^^ source.esql
+#                          ^^^^^^^^^ source.esql keyword.other.query.kusto
+#                                   ^ source.esql
+#                                    ^^^^^^^^^^^ source.esql support.function.kusto
+#                                               ^^^^^^^^^^^^^^^^^^^^^ source.esql
+>   T 
+#^^^^^^ source.esql
+>   | where x > low and x < high
+#^^^^^ source.esql
+#     ^^^^^ source.esql keyword.other.query.kusto
+#          ^^^^^^^^^ source.esql
+#                   ^^^ source.esql keyword.other.operator.kusto
+#                      ^^^^^^^^^^ source.esql
+>   | summarize avg(x) 
+#^^^^^ source.esql
+#     ^^^^^^^^^ source.esql keyword.other.query.kusto
+#              ^ source.esql
+#               ^^^ source.esql support.function.kusto
+#                  ^^^^^ source.esql
+>};
+#^^^ source.esql
+>range x from 1 to 100 step 1
+#^^^^^ source.esql meta.query.range.kusto keyword.other.query.kusto
+#     ^ source.esql meta.query.range.kusto
+#      ^ source.esql meta.query.range.kusto variable.other.column.kusto
+#       ^ source.esql meta.query.range.kusto
+#        ^^^^ source.esql meta.query.range.kusto keyword.other.operator.kusto
+#            ^ source.esql meta.query.range.kusto
+#             ^ source.esql meta.query.range.kusto constant.numeric.kusto
+#              ^ source.esql meta.query.range.kusto
+#               ^^ source.esql meta.query.range.kusto keyword.other.operator.kusto
+#                 ^ source.esql meta.query.range.kusto
+#                  ^^^ source.esql meta.query.range.kusto constant.numeric.kusto
+#                     ^ source.esql meta.query.range.kusto
+#                      ^^^^ source.esql meta.query.range.kusto keyword.other.operator.kusto
+#                          ^ source.esql meta.query.range.kusto
+#                           ^ source.esql meta.query.range.kusto constant.numeric.kusto
+>| invoke clipped_average(5, 99)
+#^^ source.esql
+#  ^^^^^^ source.esql meta.query.invoke.kusto keyword.other.query.kusto
+#        ^ source.esql meta.query.invoke.kusto
+#         ^^^^^^^^^^^^^^^ source.esql meta.query.invoke.kusto entity.name.function.kusto
+#                        ^ source.esql
+#                         ^ source.esql constant.numeric.kusto
+#                          ^^ source.esql
+#                            ^^ source.esql constant.numeric.kusto
+#                              ^^ source.esql
+>

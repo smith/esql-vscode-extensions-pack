@@ -1,0 +1,31 @@
+>StormEvents 
+#^^^^^^^^^^^^^ source.esql
+>| where isnotempty(EndLocation) 
+#^^ source.esql
+#  ^^^^^ source.esql keyword.other.query.kusto
+#       ^ source.esql
+#        ^^^^^^^^^^ source.esql support.function.kusto
+#                  ^^^^^^^^^^^^^^^ source.esql
+>| summarize event_count=count() by EndLocation
+#^^ source.esql
+#  ^^^^^^^^^ source.esql keyword.other.query.kusto
+#           ^^^^^^^^^^^^^ source.esql
+#                        ^^^^^^^ source.esql support.function.kusto
+#                               ^ source.esql
+#                                ^^ source.esql keyword.other.operator.kusto
+#                                  ^^^^^^^^^^^^^ source.esql
+>| top 10 by event_count
+#^^ source.esql
+#  ^^^ source.esql meta.query.top.kusto keyword.other.query.kusto
+#     ^ source.esql meta.query.top.kusto
+#      ^^ source.esql meta.query.top.kusto constant.numeric.kusto
+#        ^ source.esql meta.query.top.kusto
+#         ^^ source.esql meta.query.top.kusto keyword.other.operator.kusto
+#           ^ source.esql meta.query.top.kusto
+#            ^^^^^^^^^^^ source.esql meta.query.top.kusto variable.other.column.kusto
+>| render columnchart
+#^^ source.esql
+#  ^^^^^^ source.esql keyword.other.query.kusto
+#        ^ source.esql
+#         ^^^^^^^^^^^ source.esql support.function.kusto
+>

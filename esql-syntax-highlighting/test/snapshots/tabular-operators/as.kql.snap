@@ -1,0 +1,146 @@
+>// https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/asoperator
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.esql comment.line.kusto
+>
+>// 1. In the following 2 example the union's generated TableName column will consist of 'T1' and 'T2'
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.esql comment.line.kusto
+>range x from 1 to 10 step 1 
+#^^^^^ source.esql meta.query.range.kusto keyword.other.query.kusto
+#     ^ source.esql meta.query.range.kusto
+#      ^ source.esql meta.query.range.kusto variable.other.column.kusto
+#       ^ source.esql meta.query.range.kusto
+#        ^^^^ source.esql meta.query.range.kusto keyword.other.operator.kusto
+#            ^ source.esql meta.query.range.kusto
+#             ^ source.esql meta.query.range.kusto constant.numeric.kusto
+#              ^ source.esql meta.query.range.kusto
+#               ^^ source.esql meta.query.range.kusto keyword.other.operator.kusto
+#                 ^ source.esql meta.query.range.kusto
+#                  ^^ source.esql meta.query.range.kusto constant.numeric.kusto
+#                    ^ source.esql meta.query.range.kusto
+#                     ^^^^ source.esql meta.query.range.kusto keyword.other.operator.kusto
+#                         ^ source.esql meta.query.range.kusto
+#                          ^ source.esql meta.query.range.kusto constant.numeric.kusto
+#                           ^^ source.esql
+>| as T1 
+#^^ source.esql
+#  ^^ source.esql meta.query.as.kusto keyword.other.query.kusto
+#    ^ source.esql meta.query.as.kusto
+#     ^^ source.esql meta.query.as.kusto variable.other.kusto
+#       ^^ source.esql
+>| union withsource=TableName (range x from 1 to 10 step 1 | as T2)
+#^^ source.esql
+#  ^^^^^ source.esql keyword.other.query.kusto
+#       ^^^^^^^^^^^^^^^^^^^^^^^ source.esql
+#                              ^^^^^ source.esql meta.query.range.kusto keyword.other.query.kusto
+#                                   ^ source.esql meta.query.range.kusto
+#                                    ^ source.esql meta.query.range.kusto variable.other.column.kusto
+#                                     ^ source.esql meta.query.range.kusto
+#                                      ^^^^ source.esql meta.query.range.kusto keyword.other.operator.kusto
+#                                          ^ source.esql meta.query.range.kusto
+#                                           ^ source.esql meta.query.range.kusto constant.numeric.kusto
+#                                            ^ source.esql meta.query.range.kusto
+#                                             ^^ source.esql meta.query.range.kusto keyword.other.operator.kusto
+#                                               ^ source.esql meta.query.range.kusto
+#                                                ^^ source.esql meta.query.range.kusto constant.numeric.kusto
+#                                                  ^ source.esql meta.query.range.kusto
+#                                                   ^^^^ source.esql meta.query.range.kusto keyword.other.operator.kusto
+#                                                       ^ source.esql meta.query.range.kusto
+#                                                        ^ source.esql meta.query.range.kusto constant.numeric.kusto
+#                                                         ^^^ source.esql
+#                                                            ^^ source.esql meta.query.as.kusto keyword.other.query.kusto
+#                                                              ^ source.esql meta.query.as.kusto
+#                                                               ^^ source.esql meta.query.as.kusto variable.other.kusto
+#                                                                 ^^ source.esql
+>
+>// Alternatively, you can write the same example, as follows:
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.esql comment.line.kusto
+>union withsource=TableName (range x from 1 to 10 step 1 | as T1), (range x from 1 to 10 step 1 | as T2)
+#^^^^^ source.esql keyword.other.query.kusto
+#     ^^^^^^^^^^^^^^^^^^^^^^^ source.esql
+#                            ^^^^^ source.esql meta.query.range.kusto keyword.other.query.kusto
+#                                 ^ source.esql meta.query.range.kusto
+#                                  ^ source.esql meta.query.range.kusto variable.other.column.kusto
+#                                   ^ source.esql meta.query.range.kusto
+#                                    ^^^^ source.esql meta.query.range.kusto keyword.other.operator.kusto
+#                                        ^ source.esql meta.query.range.kusto
+#                                         ^ source.esql meta.query.range.kusto constant.numeric.kusto
+#                                          ^ source.esql meta.query.range.kusto
+#                                           ^^ source.esql meta.query.range.kusto keyword.other.operator.kusto
+#                                             ^ source.esql meta.query.range.kusto
+#                                              ^^ source.esql meta.query.range.kusto constant.numeric.kusto
+#                                                ^ source.esql meta.query.range.kusto
+#                                                 ^^^^ source.esql meta.query.range.kusto keyword.other.operator.kusto
+#                                                     ^ source.esql meta.query.range.kusto
+#                                                      ^ source.esql meta.query.range.kusto constant.numeric.kusto
+#                                                       ^^^ source.esql
+#                                                          ^^ source.esql meta.query.as.kusto keyword.other.query.kusto
+#                                                            ^ source.esql meta.query.as.kusto
+#                                                             ^^ source.esql meta.query.as.kusto variable.other.kusto
+#                                                               ^^^^ source.esql
+#                                                                   ^^^^^ source.esql meta.query.range.kusto keyword.other.query.kusto
+#                                                                        ^ source.esql meta.query.range.kusto
+#                                                                         ^ source.esql meta.query.range.kusto variable.other.column.kusto
+#                                                                          ^ source.esql meta.query.range.kusto
+#                                                                           ^^^^ source.esql meta.query.range.kusto keyword.other.operator.kusto
+#                                                                               ^ source.esql meta.query.range.kusto
+#                                                                                ^ source.esql meta.query.range.kusto constant.numeric.kusto
+#                                                                                 ^ source.esql meta.query.range.kusto
+#                                                                                  ^^ source.esql meta.query.range.kusto keyword.other.operator.kusto
+#                                                                                    ^ source.esql meta.query.range.kusto
+#                                                                                     ^^ source.esql meta.query.range.kusto constant.numeric.kusto
+#                                                                                       ^ source.esql meta.query.range.kusto
+#                                                                                        ^^^^ source.esql meta.query.range.kusto keyword.other.operator.kusto
+#                                                                                            ^ source.esql meta.query.range.kusto
+#                                                                                             ^ source.esql meta.query.range.kusto constant.numeric.kusto
+#                                                                                              ^^^ source.esql
+#                                                                                                 ^^ source.esql meta.query.as.kusto keyword.other.query.kusto
+#                                                                                                   ^ source.esql meta.query.as.kusto
+#                                                                                                    ^^ source.esql meta.query.as.kusto variable.other.kusto
+#                                                                                                      ^^ source.esql
+>
+>// 2. In the following example, the 'left side' of the join will be: 
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.esql comment.line.kusto
+>//      MyLogTable filtered by type == "Event" and Name == "Start"
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.esql comment.line.kusto
+>//    and the 'right side' of the join will be: 
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.esql comment.line.kusto
+>//      MyLogTable filtered by type == "Event" and Name == "Stop"
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.esql comment.line.kusto
+>MyLogTable  
+#^^^^^^^^^^^^^ source.esql
+>| where type == "Event"
+#^^ source.esql
+#  ^^^^^ source.esql keyword.other.query.kusto
+#       ^^^^^^^^^ source.esql
+#                ^ source.esql string.quoted.double.kusto punctuation.definition.string.kusto
+#                 ^^^^^ source.esql string.quoted.double.kusto
+#                      ^ source.esql string.quoted.double.kusto punctuation.definition.string.kusto
+>| as T
+#^^ source.esql
+#  ^^ source.esql meta.query.as.kusto keyword.other.query.kusto
+#    ^ source.esql meta.query.as.kusto
+#     ^ source.esql meta.query.as.kusto variable.other.kusto
+>| where Name == "Start"
+#^^ source.esql
+#  ^^^^^ source.esql keyword.other.query.kusto
+#       ^^^^^^^^^ source.esql
+#                ^ source.esql string.quoted.double.kusto punctuation.definition.string.kusto
+#                 ^^^^^ source.esql string.quoted.double.kusto
+#                      ^ source.esql string.quoted.double.kusto punctuation.definition.string.kusto
+>| join (
+#^^ source.esql
+#  ^^^^ source.esql keyword.other.query.kusto
+#      ^^^ source.esql
+>    T
+#^^^^^^ source.esql
+>    | where Name == "Stop"
+#^^^^^^ source.esql
+#      ^^^^^ source.esql keyword.other.query.kusto
+#           ^^^^^^^^^ source.esql
+#                    ^ source.esql string.quoted.double.kusto punctuation.definition.string.kusto
+#                     ^^^^ source.esql string.quoted.double.kusto
+#                         ^ source.esql string.quoted.double.kusto punctuation.definition.string.kusto
+>) on ActivityId
+#^^ source.esql
+#  ^^ source.esql keyword.other.operator.kusto
+#    ^^^^^^^^^^^^ source.esql
+>

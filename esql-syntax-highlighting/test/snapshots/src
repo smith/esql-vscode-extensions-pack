@@ -1,0 +1,5 @@
+
+
+```esql
+event | summarize(max(x))
+```

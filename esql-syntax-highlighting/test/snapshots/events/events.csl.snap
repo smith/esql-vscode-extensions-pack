@@ -1,0 +1,44 @@
+>let Events = MyLogTable | where A=B;
+#^^^ source.esql keyword.control.kusto
+#   ^^^^^^^^^^^^^^^^^^^^^^^ source.esql
+#                          ^^^^^ source.esql keyword.other.query.kusto
+#                               ^^^^^^ source.esql
+>
+>Events
+#^^^^^^^ source.esql
+>| where Name == "Start"
+#^^ source.esql
+#  ^^^^^ source.esql keyword.other.query.kusto
+#       ^^^^^^^^^ source.esql
+#                ^ source.esql string.quoted.double.kusto punctuation.definition.string.kusto
+#                 ^^^^^ source.esql string.quoted.double.kusto
+#                      ^ source.esql string.quoted.double.kusto punctuation.definition.string.kusto
+>| project Name, CIty, SessionId, StartTime=timestamp
+#^^ source.esql
+#  ^^^^^^^ source.esql keyword.other.query.kusto
+#         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.esql
+>| join (
+#^^ source.esql
+#  ^^^^ source.esql keyword.other.query.kusto
+#      ^^^ source.esql
+>    Events
+#^^^^^^^^^^^ source.esql
+>    | where Name="Stop"
+#^^^^^^ source.esql
+#      ^^^^^ source.esql keyword.other.query.kusto
+#           ^^^^^^ source.esql
+#                 ^ source.esql string.quoted.double.kusto punctuation.definition.string.kusto
+#                  ^^^^ source.esql string.quoted.double.kusto
+#                      ^ source.esql string.quoted.double.kusto punctuation.definition.string.kusto
+>    | project StopTime=timestamp, SessionId
+#^^^^^^ source.esql
+#      ^^^^^^^ source.esql keyword.other.query.kusto
+#             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.esql
+>) on SessionId
+#^^ source.esql
+#  ^^ source.esql keyword.other.operator.kusto
+#    ^^^^^^^^^^^ source.esql
+>| project City, SessionId, StopTime, Duration = StopTime - StartTime
+#^^ source.esql
+#  ^^^^^^^ source.esql keyword.other.query.kusto
+#         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.esql

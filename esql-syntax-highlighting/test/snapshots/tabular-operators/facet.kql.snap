@@ -1,0 +1,62 @@
+>// https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/facetoperator
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.esql comment.line.kusto
+>
+>StormEvents
+#^^^^^^^^^^^^ source.esql
+>| where State startswith "A" and EventType has "Heavy"
+#^^ source.esql
+#  ^^^^^ source.esql keyword.other.query.kusto
+#       ^^^^^^^ source.esql
+#              ^^^^^^^^^^ source.esql keyword.other.operator.kusto
+#                        ^ source.esql
+#                         ^ source.esql string.quoted.double.kusto punctuation.definition.string.kusto
+#                          ^ source.esql string.quoted.double.kusto
+#                           ^ source.esql string.quoted.double.kusto punctuation.definition.string.kusto
+#                            ^ source.esql
+#                             ^^^ source.esql keyword.other.operator.kusto
+#                                ^^^^^^^^^^^ source.esql
+#                                           ^^^ source.esql keyword.other.operator.kusto
+#                                              ^ source.esql
+#                                               ^ source.esql string.quoted.double.kusto punctuation.definition.string.kusto
+#                                                ^^^^^ source.esql string.quoted.double.kusto
+#                                                     ^ source.esql string.quoted.double.kusto punctuation.definition.string.kusto
+>| facet by State, EventType
+#^^ source.esql
+#  ^^^^^ source.esql meta.query.facet.kusto keyword.other.query.kusto
+#       ^ source.esql meta.query.facet.kusto
+#        ^^ source.esql meta.query.facet.kusto keyword.other.operator.kusto
+#          ^^^^^^^^^^^^^^^^^^ source.esql
+>  with 
+#^^ source.esql
+#  ^^^^ source.esql keyword.other.operator.kusto
+#      ^^ source.esql
+>  (
+#^^^^ source.esql
+>  where StartTime between(datetime(2007-01-04) .. 7d) 
+#^^ source.esql
+#  ^^^^^ source.esql keyword.other.query.kusto
+#       ^^^^^^^^^^^ source.esql
+#                  ^^^^^^^ source.esql keyword.other.operator.kusto
+#                         ^ source.esql
+#                          ^^^^^^^^ source.esql storage.type.kusto
+#                                  ^ source.esql
+#                                   ^^^^ source.esql constant.numeric.kusto
+#                                       ^ source.esql
+#                                        ^^ source.esql constant.numeric.kusto
+#                                          ^ source.esql
+#                                           ^^ source.esql constant.numeric.kusto
+#                                             ^^^^^ source.esql
+#                                                  ^^ source.esql constant.numeric.kusto
+#                                                    ^^^ source.esql
+>  | project StartTime, Source, EpisodeId, EventType
+#^^^^ source.esql
+#    ^^^^^^^ source.esql keyword.other.query.kusto
+#           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.esql
+>  | take 5
+#^^^^ source.esql
+#    ^^^^ source.esql meta.query.take.kusto keyword.other.query.kusto
+#        ^ source.esql meta.query.take.kusto
+#         ^ source.esql meta.query.take.kusto constant.numeric.kusto
+>  )
+#^^^^ source.esql
+>

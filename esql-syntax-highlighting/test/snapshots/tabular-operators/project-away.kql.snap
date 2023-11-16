@@ -1,0 +1,26 @@
+>// https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/projectawayoperator
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.esql comment.line.kusto
+>
+>print a2='a2', b = 'b', a3='a3', a1='a1'
+#^^^^^ source.esql keyword.other.query.kusto
+#     ^^^^ source.esql
+#         ^ source.esql string.quoted.single.kusto punctuation.definition.string.kusto
+#          ^^ source.esql string.quoted.single.kusto
+#            ^ source.esql string.quoted.single.kusto punctuation.definition.string.kusto
+#             ^^^^^^ source.esql
+#                   ^ source.esql string.quoted.single.kusto punctuation.definition.string.kusto
+#                    ^ source.esql string.quoted.single.kusto
+#                     ^ source.esql string.quoted.single.kusto punctuation.definition.string.kusto
+#                      ^^^^^ source.esql
+#                           ^ source.esql string.quoted.single.kusto punctuation.definition.string.kusto
+#                            ^^ source.esql string.quoted.single.kusto
+#                              ^ source.esql string.quoted.single.kusto punctuation.definition.string.kusto
+#                               ^^^^^ source.esql
+#                                    ^ source.esql string.quoted.single.kusto punctuation.definition.string.kusto
+#                                     ^^ source.esql string.quoted.single.kusto
+#                                       ^ source.esql string.quoted.single.kusto punctuation.definition.string.kusto
+>| project-away a*
+#^^ source.esql
+#  ^^^^^^^^^^^^ source.esql keyword.other.query.kusto
+#              ^^^^ source.esql
+>

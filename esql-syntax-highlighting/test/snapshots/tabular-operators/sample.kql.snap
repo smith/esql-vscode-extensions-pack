@@ -1,0 +1,46 @@
+>// https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/sampleoperator
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.esql comment.line.kusto
+>
+>let _data = range x from 1 to 100 step 1;
+#^^^ source.esql keyword.control.kusto
+#   ^^^^^^^^^ source.esql
+#            ^^^^^ source.esql meta.query.range.kusto keyword.other.query.kusto
+#                 ^ source.esql meta.query.range.kusto
+#                  ^ source.esql meta.query.range.kusto variable.other.column.kusto
+#                   ^ source.esql meta.query.range.kusto
+#                    ^^^^ source.esql meta.query.range.kusto keyword.other.operator.kusto
+#                        ^ source.esql meta.query.range.kusto
+#                         ^ source.esql meta.query.range.kusto constant.numeric.kusto
+#                          ^ source.esql meta.query.range.kusto
+#                           ^^ source.esql meta.query.range.kusto keyword.other.operator.kusto
+#                             ^ source.esql meta.query.range.kusto
+#                              ^^^ source.esql meta.query.range.kusto constant.numeric.kusto
+#                                 ^ source.esql meta.query.range.kusto
+#                                  ^^^^ source.esql meta.query.range.kusto keyword.other.operator.kusto
+#                                      ^ source.esql meta.query.range.kusto
+#                                       ^ source.esql meta.query.range.kusto constant.numeric.kusto
+#                                        ^^ source.esql
+>let _sample = _data | sample 1;
+#^^^ source.esql keyword.control.kusto
+#   ^^^^^^^^^^^^^^^^^^^ source.esql
+#                      ^^^^^^ source.esql meta.query.sample.kusto keyword.other.query.kusto
+#                            ^ source.esql meta.query.sample.kusto
+#                             ^ source.esql meta.query.sample.kusto constant.numeric.kusto
+#                              ^^ source.esql
+>union (_sample), (_sample);
+#^^^^^ source.esql keyword.other.query.kusto
+#     ^^^^^^^^^^^^^^^^^^^^^^^ source.esql
+>
+>// https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/sampledistinctoperator
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.esql comment.line.kusto
+>
+>StormEvents | sample-distinct 10 of EpisodeId
+#^^^^^^^^^^^^^^ source.esql
+#              ^^^^^^^^^^^^^^^ source.esql meta.query.sample-distinct.kusto keyword.other.query.kusto
+#                             ^ source.esql meta.query.sample-distinct.kusto
+#                              ^^ source.esql meta.query.sample-distinct.kusto constant.numeric.kusto
+#                                ^ source.esql meta.query.sample-distinct.kusto
+#                                 ^^ source.esql meta.query.sample-distinct.kusto keyword.other.operator.kusto
+#                                   ^ source.esql meta.query.sample-distinct.kusto
+#                                    ^^^^^^^^^ source.esql meta.query.sample-distinct.kusto variable.other.column.kusto
+>

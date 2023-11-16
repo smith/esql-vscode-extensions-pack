@@ -1,0 +1,114 @@
+>// https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/rangeoperator
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.esql comment.line.kusto
+>
+>range LastWeek from ago(7d) to now() step 1d;
+#^^^^^ source.esql meta.query.range.kusto keyword.other.query.kusto
+#     ^ source.esql meta.query.range.kusto
+#      ^^^^^^^^ source.esql meta.query.range.kusto variable.other.column.kusto
+#              ^ source.esql meta.query.range.kusto
+#               ^^^^ source.esql meta.query.range.kusto keyword.other.operator.kusto
+#                   ^ source.esql meta.query.range.kusto
+#                    ^^^ source.esql meta.query.range.kusto support.function.kusto
+#                       ^ source.esql meta.query.range.kusto
+#                        ^^ source.esql meta.query.range.kusto constant.numeric.kusto
+#                          ^ source.esql meta.query.range.kusto
+#                           ^ source.esql meta.query.range.kusto
+#                            ^^ source.esql meta.query.range.kusto keyword.other.operator.kusto
+#                              ^ source.esql meta.query.range.kusto
+#                               ^^^ source.esql meta.query.range.kusto support.function.kusto
+#                                  ^^ source.esql meta.query.range.kusto
+#                                    ^ source.esql meta.query.range.kusto
+#                                     ^^^^ source.esql meta.query.range.kusto keyword.other.operator.kusto
+#                                         ^ source.esql meta.query.range.kusto
+#                                          ^^ source.esql meta.query.range.kusto constant.numeric.kusto
+#                                            ^^ source.esql
+>
+>range Steps from 1 to 8 step 3;
+#^^^^^ source.esql meta.query.range.kusto keyword.other.query.kusto
+#     ^ source.esql meta.query.range.kusto
+#      ^^^^^ source.esql meta.query.range.kusto variable.other.column.kusto
+#           ^ source.esql meta.query.range.kusto
+#            ^^^^ source.esql meta.query.range.kusto keyword.other.operator.kusto
+#                ^ source.esql meta.query.range.kusto
+#                 ^ source.esql meta.query.range.kusto constant.numeric.kusto
+#                  ^ source.esql meta.query.range.kusto
+#                   ^^ source.esql meta.query.range.kusto keyword.other.operator.kusto
+#                     ^ source.esql meta.query.range.kusto
+#                      ^ source.esql meta.query.range.kusto constant.numeric.kusto
+#                       ^ source.esql meta.query.range.kusto
+#                        ^^^^ source.esql meta.query.range.kusto keyword.other.operator.kusto
+#                            ^ source.esql meta.query.range.kusto
+#                             ^ source.esql meta.query.range.kusto constant.numeric.kusto
+#                              ^^ source.esql
+>
+>range TIMESTAMP from ago(4h) to now() step 1m
+#^^^^^ source.esql meta.query.range.kusto keyword.other.query.kusto
+#     ^ source.esql meta.query.range.kusto
+#      ^^^^^^^^^ source.esql meta.query.range.kusto variable.other.column.kusto
+#               ^ source.esql meta.query.range.kusto
+#                ^^^^ source.esql meta.query.range.kusto keyword.other.operator.kusto
+#                    ^ source.esql meta.query.range.kusto
+#                     ^^^ source.esql meta.query.range.kusto support.function.kusto
+#                        ^ source.esql meta.query.range.kusto
+#                         ^^ source.esql meta.query.range.kusto constant.numeric.kusto
+#                           ^ source.esql meta.query.range.kusto
+#                            ^ source.esql meta.query.range.kusto
+#                             ^^ source.esql meta.query.range.kusto keyword.other.operator.kusto
+#                               ^ source.esql meta.query.range.kusto
+#                                ^^^ source.esql meta.query.range.kusto support.function.kusto
+#                                   ^^ source.esql meta.query.range.kusto
+#                                     ^ source.esql meta.query.range.kusto
+#                                      ^^^^ source.esql meta.query.range.kusto keyword.other.operator.kusto
+#                                          ^ source.esql meta.query.range.kusto
+#                                           ^^ source.esql meta.query.range.kusto constant.numeric.kusto
+>| join kind=fullouter
+#^^ source.esql
+#  ^^^^ source.esql keyword.other.query.kusto
+#      ^ source.esql
+#       ^^^^ source.esql keyword.other.operator.kusto
+#           ^ source.esql
+#            ^^^^^^^^^ source.esql keyword.other.kusto
+>  (Traces
+#^^^^^^^^^^ source.esql
+>      | where TIMESTAMP > ago(4h)
+#^^^^^^^^ source.esql
+#        ^^^^^ source.esql keyword.other.query.kusto
+#             ^^^^^^^^^^^^^ source.esql
+#                          ^^^ source.esql support.function.kusto
+#                             ^ source.esql
+#                              ^^ source.esql constant.numeric.kusto
+#                                ^^ source.esql
+>      | summarize Count=count() by bin(TIMESTAMP, 1m)
+#^^^^^^^^ source.esql
+#        ^^^^^^^^^ source.esql keyword.other.query.kusto
+#                 ^^^^^^^ source.esql
+#                        ^^^^^^^ source.esql support.function.kusto
+#                               ^ source.esql
+#                                ^^ source.esql keyword.other.operator.kusto
+#                                  ^ source.esql
+#                                   ^^^ source.esql meta.scalar.function.bin.kusto support.function.kusto
+#                                      ^ source.esql meta.scalar.function.bin.kusto
+#                                       ^^^^^^^^^ source.esql meta.scalar.function.bin.kusto
+#                                                ^^ source.esql meta.scalar.function.bin.kusto
+#                                                  ^^ source.esql meta.scalar.function.bin.kusto constant.numeric.kusto
+#                                                    ^ source.esql meta.scalar.function.bin.kusto
+>  ) on TIMESTAMP
+#^^^^ source.esql
+#    ^^ source.esql keyword.other.operator.kusto
+#      ^^^^^^^^^^^ source.esql
+>| project Count=iff(isnull(Count), 0, Count), TIMESTAMP
+#^^ source.esql
+#  ^^^^^^^ source.esql keyword.other.query.kusto
+#         ^^^^^^^ source.esql
+#                ^^^ source.esql support.function.kusto
+#                   ^ source.esql
+#                    ^^^^^^ source.esql support.function.kusto
+#                          ^^^^^^^^^ source.esql
+#                                   ^ source.esql constant.numeric.kusto
+#                                    ^^^^^^^^^^^^^^^^^^^^ source.esql
+>| render timechart
+#^^ source.esql
+#  ^^^^^^ source.esql keyword.other.query.kusto
+#        ^ source.esql
+#         ^^^^^^^^^ source.esql support.function.kusto
+>
