@@ -22,9 +22,9 @@
             "request": "launch",
             "runtimeExecutable": "${execPath}",
             "args": [
-                "--disable-extensions",
-                "--extensionDevelopmentPath=${workspaceFolder}/kusto-syntax-highlighting",
-                "${workspaceFolder}/kusto-syntax-highlighting/test/snapshots/src"
+              "--disable-extensions",
+              "--extensionDevelopmentPath=${workspaceFolder}/esql-syntax-highlighting",
+              "${workspaceFolder}/esql-syntax-highlighting/test/snapshots/src"
             ],
         },
         {

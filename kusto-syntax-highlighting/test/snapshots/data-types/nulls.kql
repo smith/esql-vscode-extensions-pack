@@ -1,1 +1,0 @@
-print bool(null), datetime(null), dynamic(null), guid(null), int(null), long(null), real(null), time(null)

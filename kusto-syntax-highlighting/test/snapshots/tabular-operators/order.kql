@@ -1,3 +1,0 @@
-// https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/orderoperator
-
-T | order by country asc, price desc
